@@ -1,12 +1,11 @@
 const bcrypt = require("bcrypt");
-const uuid = require ('uuid')
+const { v4: uuidv4 } = require('uuid');
 
 const plainText = "hallo";
 const compare = "hallo";
 
 (async () => {
-  try {
-
+  try { 
     const chiperText = await bcrypt.hash(plainText, 12);
     console.log("Hashed Password:", chiperText);
 
@@ -15,12 +14,12 @@ const compare = "hallo";
 
     if (isTrue) {
         console.log("Login successful");
-        const token = uuid.v4
-        console.log(token())
+        const token = uuidv4()
+        console.log(token)
       } else {
         console.log("Login failed");
       }
   } catch (err) {
-    console.error("Error", err);
+    if(err) throw err
   }
 })();
